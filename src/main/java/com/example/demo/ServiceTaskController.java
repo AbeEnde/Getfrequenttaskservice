@@ -1,7 +1,5 @@
-package com.example.demo.controller;
+package com.example.demo;
 
-import com.example.demo.entity.ServiceTimestamp;
-import com.example.demo.repository.ServiceTaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,7 +10,7 @@ import java.util.List;
 
 @RestController
 public class ServiceTaskController {
-    @Autowired
+
     private ServiceTaskRepository servicetaskrepositary;
 
     @PostMapping("/addAccesedservicetask")
