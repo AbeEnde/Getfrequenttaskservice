@@ -1,4 +1,4 @@
-package com.example.demo.feature;
+package com.example.demo.utils;
 
 public class FavService {
     private Long serviceid;

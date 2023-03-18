@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.feature.ServiceTaskPersist;
+import com.example.demo.utils.ServiceTaskPersist;
 import com.example.demo.model.ServiceTimestamp;
 import com.example.demo.model.Task;
 import com.example.demo.repository.TaskRepository;
@@ -14,11 +14,9 @@ import java.util.List;
 public class TaskController {
 
     private TaskRepository taskRepository;
-   // private ServiceTaskController serviceTaskController;
 
     public TaskController(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
-       // this.serviceTaskController = serviceTaskController;
     }
 
 
@@ -26,10 +24,13 @@ public class TaskController {
     public Task createTask(@RequestBody Task task) {
         return taskRepository.save(task);
     }
+
+
     @GetMapping("/getTask")
     public List<Task> getAllTask(){
         return taskRepository.findAll();
     }
+
 
     @GetMapping("/getTask/{id}")
     public ResponseEntity<Task> getTaskByID(@PathVariable Long id) {
@@ -41,4 +42,5 @@ public class TaskController {
         }
         return ResponseEntity.ok(task);
     }
+
 }

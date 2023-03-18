@@ -1,8 +1,9 @@
 package com.example.demo.model;
 
 import javax.persistence.Column;
-//import javax.persistence.Entity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 
@@ -18,12 +19,10 @@ Based on the new requirement this class may no more needed
 @Entity
 @Table(name = "servicetmestamp")
 public class ServiceTimestamp {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private long id;
 
     @Id
     @jakarta.persistence.Column(name = "id", nullable = false)
+    @GeneratedValue(strategy=GenerationType.TABLE)
     private Long id;
 
     @Column(name = "userID")
@@ -102,4 +101,5 @@ public class ServiceTimestamp {
     public void setCount(int count) {
         this.count = count;
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.demo.feature;
+package com.example.demo.utils;
 
 import com.example.demo.model.ServiceTimestamp;
 import com.example.demo.repository.ServiceTaskRepository;
@@ -19,6 +19,7 @@ public class ServiceTaskPersist {
     public ServiceTimestamp createServiceTimestamp(ServiceTimestamp serviceTimestamp) {
         return servicetaskrepositary.save(serviceTimestamp);
     }
+
 
     public List<ServiceTimestamp> getAllServiceTimestamp(){
         return servicetaskrepositary.findAll();
