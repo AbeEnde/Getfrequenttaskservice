@@ -1,22 +1,32 @@
-package com.example.demo;
+package com.example.demo.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+
 import javax.persistence.Table;
 @Entity
-@Table(name = "Task")
+@Table(name = "task")
 public class Task {
+
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "taskID")
-    private long taskID;
+    @jakarta.persistence.Column(name = "task_id", nullable = false)
+    private Long taskID;
 
     @Column(name = "taskName")
     private String taskName;
+
+    @Column(name = "catagory")
+    private String catagory;
+
+
+    public void setTaskID(Long taskID) {
+        this.taskID = taskID;
+    }
 
     public long getTaskID() {
         return taskID;

@@ -1,28 +1,30 @@
-package com.example.demo;
+package com.example.demo.model;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+//import javax.persistence.Entity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+
 import javax.persistence.Table;
-import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
 
 /*
 
-This is an entity for our ServiceAndTaskTimestamp
-store here userId serviceID taskID and timestamp then
-we count and see which service and task are used frequently.
+Based on the new requirement this class may no more needed
 
  */
 @Entity
-@Table(name = "ServiceTimestamp")
+@Table(name = "servicetmestamp")
 public class ServiceTimestamp {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private long id;
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @jakarta.persistence.Column(name = "id", nullable = false)
+    private Long id;
 
     @Column(name = "userID")
     private String userID;
@@ -37,12 +39,20 @@ public class ServiceTimestamp {
     @Column(name = "timestamp")
     private Date timestamp;
 
+    @Column(name = "count")
+    private int count;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public ServiceTimestamp(){}
-    public ServiceTimestamp( String userID, Long serviceID, Long taskID) {
+    public ServiceTimestamp( String userID, Long serviceID, Long taskID,int count) {
         this.userID = userID;
         this.serviceID = serviceID;
         this.taskID = taskID;
         this.timestamp = Calendar.getInstance().getTime();
+        this.count = count;
     }
 
     public long getId() {
@@ -83,5 +93,13 @@ public class ServiceTimestamp {
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 }
