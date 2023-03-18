@@ -6,7 +6,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
-
 import javax.persistence.Table;
 @Entity
 @Table(name = "task")
@@ -23,6 +22,12 @@ public class Task {
     @Column(name = "catagory")
     private String catagory;
 
+    public Task(){}
+    public Task(Long taskID, String taskName, String catagory) {
+        this.taskID = taskID;
+        this.taskName = taskName;
+        this.catagory = catagory;
+    }
 
     public void setTaskID(Long taskID) {
         this.taskID = taskID;
@@ -44,4 +49,11 @@ public class Task {
         this.taskName = taskName;
     }
 
+    public String getCatagory() {
+        return catagory;
+    }
+
+    public void setCatagory(String catagory) {
+        this.catagory = catagory;
+    }
 }

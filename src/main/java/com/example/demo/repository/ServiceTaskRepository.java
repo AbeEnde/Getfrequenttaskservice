@@ -14,5 +14,9 @@ public interface ServiceTaskRepository extends JpaRepository<ServiceTimestamp, L
     )
     List<FrequentService> getFrequent();
 
+
+
     ServiceTimestamp findByServiceID(Long serviceID);
+
+    ServiceTimestamp findByTaskID(Long taskID);
 }

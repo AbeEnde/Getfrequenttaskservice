@@ -4,6 +4,7 @@ import com.example.demo.model.Service;
 import com.example.demo.model.ServiceTimestamp;
 import com.example.demo.repository.ServiceRepository;
 import com.example.demo.repository.ServiceTaskRepository;
+import com.example.demo.utils.FrequentService;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,11 @@ public class ServiceController {
         this.serviceTaskRepository = serviceTaskRepository;
     }
 
+    @GetMapping("/getFrequentService")
+    public List<FrequentService> getFrequentService(){
 
+        return serviceTaskRepository.getFrequent();
+    }
     @PostMapping("/addService")
     public Service createService(@RequestBody Service service) {
         return serviceRepositary.save(service);

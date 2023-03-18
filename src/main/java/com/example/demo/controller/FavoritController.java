@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.utils.FrequentService;
 import com.example.demo.model.Favorite;
 import com.example.demo.repository.FavoriteRepo;
 import com.example.demo.repository.ServiceTaskRepository;
@@ -26,7 +25,7 @@ public class FavoritController {
 
     /*
     *to get user id already configured can use next line code
-    *Long Userid = userRepository.findByName(authentication.getName()).getId();
+    *Long UserId = userRepository.findByName(authentication.getName()).getId();
    */
 
     @PostMapping("/addFav")
@@ -47,11 +46,6 @@ public class FavoritController {
     }
 
 
-    @GetMapping("/getFrequent")
-    public List<FrequentService> getFrequent(){
-
-        return serviceTaskRepository.getFrequent();
-    }
 
     @DeleteMapping("/deleteSelected/{id}")
     public void deleteSelected (@PathVariable("id") Long id){

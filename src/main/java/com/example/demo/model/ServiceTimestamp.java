@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-
 import javax.persistence.Table;
 import java.util.Calendar;
 import java.util.Date;
