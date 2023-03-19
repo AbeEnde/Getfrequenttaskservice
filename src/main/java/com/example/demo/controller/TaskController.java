@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.repository.ServiceTaskRepository;
-import com.example.demo.utils.FrequentService;
 import com.example.demo.utils.FrequentTask;
-import com.example.demo.utils.ServiceTaskPersist;
 import com.example.demo.model.ServiceTimestamp;
 import com.example.demo.model.Task;
 import com.example.demo.repository.TaskRepository;
@@ -18,6 +16,7 @@ import java.util.List;
 @RestController
 public class TaskController {
 
+    private int topN = 5;
     private TaskRepository taskRepository;
 
     @Autowired
@@ -32,6 +31,24 @@ public class TaskController {
 
         return taskRepository.getFrequentTask();
     }
+
+    @GetMapping("/getTopnTasks")
+    public List<FrequentTask> getTop_n_Tasks(){
+        return findTopNtasks();
+    }
+
+    List<FrequentTask> findTopNtasks(){
+        List<FrequentTask> frequentTasks = taskRepository.getFrequentTask();
+        List<FrequentTask> topNtasks = new ArrayList<>();
+        for(FrequentTask frequentTask:frequentTasks){
+            if(topNtasks.size()>=topN){
+                break;
+            }
+            topNtasks.add(frequentTask);
+        }
+        return topNtasks;
+    }
+
     @PostMapping("/addTask")
     public Task createTask(@RequestBody Task task) {
         return taskRepository.save(task);

@@ -15,6 +15,7 @@ import java.util.List;
 @RestController
 public class ServiceController {
 
+    private int topN = 5;
     private ServiceRepository serviceRepositary;
     private ServiceTaskRepository serviceTaskRepository;
 
@@ -29,6 +30,25 @@ public class ServiceController {
 
         return serviceTaskRepository.getFrequent();
     }
+
+    @GetMapping("/getTopnService")
+    public List<FrequentService> getTop_n_Service(){
+        return findTopNservices();
+    }
+
+    List<FrequentService> findTopNservices(){
+        List<FrequentService> frequentServs = serviceTaskRepository.getFrequent();
+        List<FrequentService> topNservices = new ArrayList<>();
+        for(FrequentService frequentServ:frequentServs){
+            if(topNservices.size()>=topN){
+                break;
+            }
+            topNservices.add(frequentServ);
+        }
+        return topNservices;
+    }
+
+
     @PostMapping("/addService")
     public Service createService(@RequestBody Service service) {
         return serviceRepositary.save(service);
