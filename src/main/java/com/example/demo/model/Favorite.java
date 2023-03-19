@@ -14,14 +14,16 @@ public class Favorite {
 
     @Column(name = "userID")
     private String userID;
+
     @Column(name = "serviceID")
     private Long serviceID;
 
-    @Column(name = "serviceName")
-    private String serviceName;
-
-    @Column(name = "catagory")
-    private String catagory;
+    public Favorite(){}
+    public Favorite(Long id, String userID, Long serviceID) {
+        this.id = id;
+        this.userID = userID;
+        this.serviceID = serviceID;
+    }
 
     public Long getId() {
         return id;
@@ -29,14 +31,6 @@ public class Favorite {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getServiceID() {
-        return serviceID;
-    }
-
-    public void setServiceID(Long serviceID) {
-        this.serviceID = serviceID;
     }
 
     public String getUserID() {
@@ -47,29 +41,11 @@ public class Favorite {
         this.userID = userID;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public Long getServiceID() {
+        return serviceID;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
-    }
-
-    public String getCatagory() {
-        return catagory;
-    }
-
-    public void setCatagory(String catagory) {
-        this.catagory = catagory;
-    }
-
-    public Favorite(){}
-
-    public Favorite(Long id, String userID, Long serviceID, String serviceName, String catagory) {
-        this.id = id;
-        this.userID = userID;
+    public void setServiceID(Long serviceID) {
         this.serviceID = serviceID;
-        this.serviceName = serviceName;
-        this.catagory = catagory;
     }
 }

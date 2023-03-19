@@ -3,15 +3,14 @@ package com.example.demo.utils;
 public class FavService {
     private Long serviceid;
     private String serviceName;
-    private String catagory;
     private String userID;
 
     public FavService(){}
 
-    public FavService(Long serviceId, String serviceName, String catagory, String userID) {
+    public FavService(Long serviceId, String serviceName, String userID) {
         this.serviceid = serviceId;
         this.serviceName = serviceName;
-        this.catagory = catagory;
+       // this.tasks = tasks;
         this.userID = userID;
     }
 
@@ -31,13 +30,6 @@ public class FavService {
         this.serviceName = serviceName;
     }
 
-    public String getCatagory() {
-        return catagory;
-    }
-
-    public void setCatagory(String catagory) {
-        this.catagory = catagory;
-    }
 
     public String getUserID() {
         return userID;

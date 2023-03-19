@@ -1,10 +1,12 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 
 import javax.persistence.Table;
+import java.util.List;
+
 @Entity
 @Table(name = "service")
 public class Service {
@@ -16,13 +18,17 @@ public class Service {
     @Column(name = "serviceName")
     private String serviceName;
 
-    @Column(name = "catagory")
-    private String catagory;
+    @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
+    private List<Task> tasks;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "category_id", nullable = false, referencedColumnName = "id")
+    private Category category;
 
     public Service(){}
-    public Service(String serviceName, String catagory) {
+    public Service( Long serviceID,String serviceName,Category category) {
+        this.serviceid = serviceID;
         this.serviceName = serviceName;
-        this.catagory = catagory;
+        this.category = category;
     }
 
     public Long getId() {
@@ -49,11 +55,26 @@ public class Service {
         this.serviceName = serviceName;
     }
 
-    public String getCatagory() {
-        return catagory;
+    public void setServiceid(Long serviceid) {
+        this.serviceid = serviceid;
     }
 
-    public void setCatagory(String catagory) {
-        this.catagory = catagory;
+
+    @JsonBackReference
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    @JsonManagedReference
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 }

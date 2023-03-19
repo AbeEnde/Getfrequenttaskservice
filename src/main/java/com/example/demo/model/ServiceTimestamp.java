@@ -10,11 +10,6 @@ import javax.persistence.Table;
 import java.util.Calendar;
 import java.util.Date;
 
-/*
-
-Based on the new requirement this class may no more needed
-
- */
 @Entity
 @Table(name = "servicetmestamp")
 public class ServiceTimestamp {

@@ -1,10 +1,7 @@
 package com.example.demo.model;
 
-
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 import javax.persistence.Table;
 @Entity
@@ -19,14 +16,15 @@ public class Task {
     @Column(name = "taskName")
     private String taskName;
 
-    @Column(name = "catagory")
-    private String catagory;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "service_id", nullable = false, referencedColumnName = "serviceid")
+    private Service service;
     public Task(){}
-    public Task(Long taskID, String taskName, String catagory) {
+    public Task(Long taskID, String taskName, String catagory,Service service) {
         this.taskID = taskID;
         this.taskName = taskName;
-        this.catagory = catagory;
+        this.service = service;
     }
 
     public void setTaskID(Long taskID) {
@@ -49,11 +47,12 @@ public class Task {
         this.taskName = taskName;
     }
 
-    public String getCatagory() {
-        return catagory;
+    @JsonBackReference
+    public Service getService() {
+        return service;
     }
 
-    public void setCatagory(String catagory) {
-        this.catagory = catagory;
+    public void setService(Service service) {
+        this.service = service;
     }
 }

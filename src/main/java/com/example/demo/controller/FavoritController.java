@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Favorite;
 import com.example.demo.repository.FavoriteRepo;
 import com.example.demo.repository.ServiceTaskRepository;
+import com.example.demo.utils.FavService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,10 +40,10 @@ public class FavoritController {
 
 
     @GetMapping("/getFav")
-    public List<Favorite> getFavService() {
+    public List<FavService> getFavService() {
         String userID = "ab1";
 
-        return favoriteRepo.findByUserID(userID);
+        return favoriteRepo.getFavoriteServices(userID);
     }
 
 

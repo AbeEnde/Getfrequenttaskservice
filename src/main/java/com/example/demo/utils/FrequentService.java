@@ -4,16 +4,14 @@ public class FrequentService {
     private String userID;
     private  Long serviceID;
     private String serviceName;
-    private String catagory;
     private int count;
-
     public FrequentService(){}
-    public FrequentService( String userID,int count, Long serviceID, String serviceName,String catagory) {
+    public FrequentService( String userID,int count, Long serviceID, String serviceName ) {
         this.userID = userID;
         this.serviceID = serviceID;
         this.serviceName = serviceName;
-        this.catagory = catagory;
         this.count = count;
+
     }
 
     public String getUserID() {
@@ -40,13 +38,6 @@ public class FrequentService {
         this.serviceName = serviceName;
     }
 
-    public String getCatagory() {
-        return catagory;
-    }
-
-    public void setCatagory(String catagory) {
-        this.catagory = catagory;
-    }
 
     public int getCount() {
         return count;
@@ -55,4 +46,5 @@ public class FrequentService {
     public void setCount(int count) {
         this.count = count;
     }
+
 }
