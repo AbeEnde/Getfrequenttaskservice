@@ -18,6 +18,12 @@ public class Service {
     @Column(name = "serviceName")
     private String serviceName;
 
+    @Column(name = "service_type" )
+    private String serviceType = "1";
+
+    @Column(name = "link" )
+    private String link;
+
     @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
     private List<Task> tasks;
     @ManyToOne(optional = false)
@@ -59,6 +65,21 @@ public class Service {
         this.serviceid = serviceid;
     }
 
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
+    }
 
     @JsonBackReference
     public Category getCategory() {

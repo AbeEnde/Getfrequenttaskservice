@@ -16,6 +16,11 @@ public class Task {
     @Column(name = "taskName")
     private String taskName;
 
+    @Column(name = "task_type" )
+    private String taskType = "1";
+
+    @Column(name = "link" )
+    private String link;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "service_id", nullable = false, referencedColumnName = "serviceid")
@@ -45,6 +50,22 @@ public class Task {
 
     public void setTaskName(String taskName) {
         this.taskName = taskName;
+    }
+
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 
     @JsonBackReference
