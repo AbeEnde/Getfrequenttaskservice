@@ -51,10 +51,21 @@ public class TaskController {
 
     @PostMapping("/addTask")
     public Task createTask(@RequestBody Task task) {
+        if(task.getTaskType().equals("0")){
+            return taskRepository.save(decideExternalLinkType(task));
+        }
+
         return taskRepository.save(task);
     }
 
-
+    Task decideExternalLinkType(Task task){
+        if(task.getLink().startsWith("http://www")||task.getLink().startsWith("https://www")){
+            task.setIsBrowserLink("br");
+        }else{
+            task.setIsBrowserLink("app");
+        }
+        return task;
+    }
     @GetMapping("/getTask")
     public List<Task> getAllTask(){
         return taskRepository.findAll();

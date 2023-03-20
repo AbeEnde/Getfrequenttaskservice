@@ -51,9 +51,21 @@ public class ServiceController {
 
     @PostMapping("/addService")
     public Service createService(@RequestBody Service service) {
-        return serviceRepositary.save(service);
-    }
+        if(service.getServiceType().equals("0")){
+            return serviceRepositary.save(decideExternalLinkType(service));
+        }
 
+        return serviceRepositary.save(service);
+
+    }
+    Service decideExternalLinkType(Service service){
+        if(service.getLink().startsWith("http://www")||service.getLink().startsWith("https://www")){
+            service.setIsBrowserLink("br");
+        }else{
+            service.setIsBrowserLink("app");
+        }
+        return service;
+    }
 
     @GetMapping("/getService")
     public List<Service> getAllService(){

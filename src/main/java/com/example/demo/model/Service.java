@@ -24,6 +24,9 @@ public class Service {
     @Column(name = "link" )
     private String link;
 
+    @Column(name = "is_browser_link" )
+    private String isBrowserLink;
+
     @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
     private List<Task> tasks;
     @ManyToOne(optional = false)
@@ -79,6 +82,14 @@ public class Service {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public String getIsBrowserLink() {
+        return isBrowserLink;
+    }
+
+    public void setIsBrowserLink(String isBrowserLink) {
+        this.isBrowserLink = isBrowserLink;
     }
 
     @JsonBackReference
