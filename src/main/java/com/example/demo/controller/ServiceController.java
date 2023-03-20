@@ -51,7 +51,7 @@ public class ServiceController {
 
     @PostMapping("/addService")
     public Service createService(@RequestBody Service service) {
-        if(service.getServiceType().equals("0")){
+        if(service.getType().equals("0")){
             return serviceRepositary.save(decideExternalLinkType(service));
         }
 
@@ -79,8 +79,8 @@ public class ServiceController {
                 .orElseThrow(() -> new ResourceNotFoundException("service not exist with id :" + id));
 
         if(getAvailableService()!=null) {
-            if(getAvailableService().contains(service.getServiceid())){
-                ServiceTimestamp servTime =findAllServiceTime(service.getServiceid());
+            if(getAvailableService().contains(service.getId())){
+                ServiceTimestamp servTime =findAllServiceTime(service.getId());
                 servTime.setCount(servTime.getCount()+1);
                 addServiceTimestamp(servTime);
             } else {

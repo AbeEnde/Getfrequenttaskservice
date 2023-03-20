@@ -12,14 +12,14 @@ import java.util.List;
 public class Service {
     @Id
     @Column(name = "serviceid")
-    private Long serviceid;
+    private Long id;
 
 
     @Column(name = "serviceName")
-    private String serviceName;
+    private String name;
 
     @Column(name = "service_type" )
-    private String serviceType = "1";
+    private String type = "1";
 
     @Column(name = "link" )
     private String link;
@@ -27,6 +27,11 @@ public class Service {
     @Column(name = "is_browser_link" )
     private String isBrowserLink;
 
+    @Column(name = "icon" )
+    private String icon;
+
+    @Column(name = "color" )
+    private String color;
     @OneToMany(mappedBy = "service", cascade = CascadeType.ALL)
     private List<Task> tasks;
     @ManyToOne(optional = false)
@@ -34,46 +39,50 @@ public class Service {
     private Category category;
 
     public Service(){}
-    public Service( Long serviceID,String serviceName,Category category) {
-        this.serviceid = serviceID;
-        this.serviceName = serviceName;
+
+    public Service(Long id, String name, String type, String link, String isBrowserLink, String icon, String color, List<Task> tasks, Category category) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.link = link;
+        this.isBrowserLink = isBrowserLink;
+        this.icon = icon;
+        this.color = color;
+        this.tasks = tasks;
         this.category = category;
     }
 
-    public Long getId() {
-        return serviceid;
-    }
 
     public void setId(Long id) {
-        this.serviceid = id;
+        this.id = id;
     }
 
-    public long getServiceid() {
-        return serviceid;
+    public long getId() {
+        return id;
     }
 
-    public void setServiceid(long serviceid) {
-        this.serviceid = serviceid;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public String getName() {
+        return name;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setServiceid(Long serviceid) {
-        this.serviceid = serviceid;
+        this.id = serviceid;
     }
 
-    public String getServiceType() {
-        return serviceType;
+    public String getType() {
+        return type;
     }
 
-    public void setServiceType(String serviceType) {
-        this.serviceType = serviceType;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getLink() {
@@ -90,6 +99,22 @@ public class Service {
 
     public void setIsBrowserLink(String isBrowserLink) {
         this.isBrowserLink = isBrowserLink;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     @JsonBackReference

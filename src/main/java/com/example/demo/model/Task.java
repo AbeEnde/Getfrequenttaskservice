@@ -24,13 +24,25 @@ public class Task {
 
     @Column(name = "is_browser_link" )
     private String isBrowserLink;
+
+    @Column(name = "icon" )
+    private String icon;
+
+    @Column(name = "color" )
+    private String color;
     @ManyToOne(optional = false)
     @JoinColumn(name = "service_id", nullable = false, referencedColumnName = "serviceid")
     private Service service;
     public Task(){}
-    public Task(Long taskID, String taskName, String catagory,Service service) {
+
+    public Task(Long taskID, String taskName, String taskType, String link, String isBrowserLink, String icon, String color, Service service) {
         this.taskID = taskID;
         this.taskName = taskName;
+        this.taskType = taskType;
+        this.link = link;
+        this.isBrowserLink = isBrowserLink;
+        this.icon = icon;
+        this.color = color;
         this.service = service;
     }
 
@@ -76,6 +88,22 @@ public class Task {
 
     public void setIsBrowserLink(String isBrowserLink) {
         this.isBrowserLink = isBrowserLink;
+    }
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     @JsonBackReference
