@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Favorite;
-import com.example.demo.repository.FavoriteRepo;
-import com.example.demo.repository.ServiceTaskRepository;
+import com.example.demo.service.FavoriteService;
 import com.example.demo.utils.FavService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,17 +11,9 @@ import java.util.List;
 
 @RestController
 public class FavoritController {
-    @Autowired
-    FavoriteRepo favoriteRepo;
 
     @Autowired
-    ServiceTaskRepository serviceTaskRepository;
-
-    int countCheak() {
-        List<Favorite> list = favoriteRepo.findByUserID("ab1");
-
-        return list.size();
-    }
+    private FavoriteService favoriteService;
 
     /*
     *to get user id already configured can use next line code
@@ -31,11 +22,7 @@ public class FavoritController {
 
     @PostMapping("/addFav")
     public Favorite addFav(@RequestBody Favorite favorite){
-        if (countCheak()<5){
-            return favoriteRepo.save(favorite);
-        }
-
-        return null;
+      return favoriteService.save(favorite);
     }
 
 
@@ -43,14 +30,14 @@ public class FavoritController {
     public List<FavService> getFavService() {
         String userID = "ab1";
 
-        return favoriteRepo.getFavoriteServices(userID);
+        return favoriteService.findAll(userID);
     }
 
 
 
     @DeleteMapping("/deleteSelected/{id}")
     public void deleteSelected (@PathVariable("id") Long id){
-         favoriteRepo.deleteById(id);
+         favoriteService.deleteById(id);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Category;
-import com.example.demo.repository.CategoryRepository;
+import com.example.demo.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,16 +14,16 @@ import java.util.List;
 public class CategoryController {
 
     @Autowired
-    CategoryRepository categoryRepository;
+    private  CategoryService categoryService;
     @PostMapping("/addCategory")
     public Category addCategory(@RequestBody Category category){
-        return categoryRepository.save(category);
+        return categoryService.save(category);
     }
 
 
     @GetMapping("/getCategory")
     public List<Category> getAllCatagory(){
-        return categoryRepository.findAll();
+        return categoryService.findAll();
     }
 
 }
