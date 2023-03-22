@@ -4,6 +4,7 @@ import com.example.demo.model.Favorite;
 import com.example.demo.service.FavoriteService;
 import com.example.demo.utils.FavService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public class FavoritController {
    */
 
     @PostMapping("/addFav")
-    public Favorite addFav(@RequestBody Favorite favorite){
+    public ResponseEntity<String> addFav(@RequestBody Favorite favorite){
       return favoriteService.save(favorite);
     }
 

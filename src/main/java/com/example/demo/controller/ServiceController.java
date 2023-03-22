@@ -4,6 +4,7 @@ import com.example.demo.model.Service;
 import com.example.demo.service.ServiceLayer;
 import com.example.demo.utils.FrequentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class ServiceController {
 
 
     @PostMapping("/addService")
-    public Service createService(@RequestBody Service service) {
+    public ResponseEntity<String> createService(@RequestBody Service service) {
         return serviceLayer.save(service);
     }
 

@@ -8,6 +8,7 @@ import com.example.demo.utils.FrequentTask;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,12 +25,13 @@ public class TaskService {
 
     private int topN = 5;
 
-    public Task save(Task task){
+    public ResponseEntity<String> save(Task task) {
         if(task.getTaskType().equals("0")){
-            return taskRepository.save(decideExternalLinkType(task));
+            Task result = taskRepository.save(decideExternalLinkType(task));
+        }else{
+            Task result = taskRepository.save(task);
         }
-
-        return taskRepository.save(task);
+      return ResponseEntity.ok().body("Task Added Successfully");
     }
 
     Task decideExternalLinkType(Task task){

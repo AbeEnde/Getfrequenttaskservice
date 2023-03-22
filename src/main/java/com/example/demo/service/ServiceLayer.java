@@ -8,6 +8,7 @@ import com.example.demo.utils.FrequentService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,12 +25,14 @@ public class ServiceLayer {
 
     private  int topN = 5;
 
-    public Service save(Service service){
+    public  ResponseEntity<String> save(Service service){
         if(service.getType().equals("0")){
-            return serviceRepository.save(decideExternalLinkType(service));
+            Service result = serviceRepository.save(decideExternalLinkType(service));
+        }else{
+            Service result = serviceRepository.save(service);
         }
 
-        return serviceRepository.save(service);
+        return ResponseEntity.ok().body("A service Added Successfully!!");
     }
 
     com.example.demo.model.Service decideExternalLinkType(com.example.demo.model.Service service){
@@ -90,9 +93,7 @@ public class ServiceLayer {
         return serviceTaskRepository.getFrequent();
     }
 
-    public
-
-    List<FrequentService> findTopNservices(){
+   public List<FrequentService> findTopNservices(){
         List<FrequentService> frequentServs = serviceTaskRepository.getFrequent();
         List<FrequentService> topNservices = new ArrayList<>();
         for(FrequentService frequentServ:frequentServs){

@@ -5,6 +5,7 @@ import com.example.demo.repository.FavoriteRepo;
 import com.example.demo.utils.FavService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,13 +22,14 @@ public class FavoriteService {
 
         return list.size();
     }
-    public Favorite save(Favorite favorite){
+    public ResponseEntity<String> save(Favorite favorite){
 
         if (countCheak()<5){
-            return favoriteRepo.save(favorite);
+            Favorite result = favoriteRepo.save(favorite);
+            return ResponseEntity.ok().body("Service Added to Favorite ");
         }
 
-        return null;
+        return ResponseEntity.ok().body("You can't add more than 5 service to Favorite ");
     }
 
     public List<FavService> findAll(String UserId){
